@@ -28,9 +28,9 @@ services:
     env_file:
       - .env
     environment:
-      - AWS_DEFAULT_REGION=ap-south-1
       - CELERY_BROKER_URL=redis://redis:6379/0
-      - DEBUG=false
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DEBUG=True
     depends_on:
       - redis
     mem_limit: 1g
