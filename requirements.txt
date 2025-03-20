@@ -1,0 +1,14 @@
+Flask
+python-dotenv
+flask-cors
+celery
+pdfplumber
+beautifulsoup4
+python-docx
+docx2pdf
+openai
+PyMuPDF
+Spire.Doc
+redis
+uvicorn
+asgiref

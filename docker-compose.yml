@@ -1,0 +1,37 @@
+version: "3.10"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["uvicorn", "app:asgi_app", "--host", "0.0.0.0", "--port", "8000"]
+    env_file:
+      - .env
+    environment:
+      - DEBUG=false
+    ports:
+      - "80:8000"
+    mem_limit: 2g
+    restart: always
+
+  redis:
+    image: "redis:alpine"
+    mem_limit: 256m
+    restart: always
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["celery", "-A", "app.celery_app", "worker", "--loglevel=info"]
+    env_file:
+      - .env
+    environment:
+      - AWS_DEFAULT_REGION=ap-south-1
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - DEBUG=false
+    depends_on:
+      - redis
+    mem_limit: 1g
+    restart: always
