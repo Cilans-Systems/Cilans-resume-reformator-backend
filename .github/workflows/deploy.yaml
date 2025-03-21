@@ -24,7 +24,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
           application_name: resume-reformator
-          environment_name: Resume-reformator-env
+          environment_name: Resume-reformator-env-1
           existing_bucket_name: elasticbeanstalk-ap-south-1-122610493359
           version_label: ${{ github.sha }}
           region: ap-south-1
